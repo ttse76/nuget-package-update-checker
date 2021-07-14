@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "compare-versions": "^3.6.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "xml2js": "^0.4.23"
   }
 }
