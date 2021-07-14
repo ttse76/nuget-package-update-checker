@@ -5,8 +5,6 @@ const BASE_URL = 'https://api.nuget.org/v3/registration5-gz-semver2/';
 
 const getLatestVersion = async (packageName) => {
     const url = BASE_URL + packageName.toLowerCase() + '/index.json';
-    console.log(url);
-
     const data = await fetch(url).then(res => res.json());
 
     const items = data.items;
@@ -24,6 +22,17 @@ const getLatestVersion = async (packageName) => {
 };
 
 exports.isUpToDate = async (packageName, version) => {
-    return await getLatestVersion(packageName);
+    var latest = await getLatestVersion(packageName);
 
+    if(compareVersions(latest, version) === 1){
+        return {
+            upToDate: false,
+            latestVersion: latest,
+            installed: version
+        }
+    }
+
+    return {
+        upToDate: true,
+    };
 };
