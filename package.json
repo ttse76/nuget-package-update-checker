@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/index.js"
   },
+  "repository": "https://github.com/ttse76/nuget-package-update-checker",
   "author": "",
   "license": "ISC"
 }
