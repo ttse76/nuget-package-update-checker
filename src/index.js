@@ -66,16 +66,10 @@ const main = async () => {
         const version = packages[package];
         const res = await nuget.isUpToDate(package, version);
         if(res.status !== 200){
-            console.error('Error on version check for ' + package + ': ' + res.message);
-            console.log('\n');
+            console.log(package + ',,,' + res.message);
             return;
         }
-        if(res.isUpToDate){
-            console.log(package + ' is up to date.\n' + version);
-        }else{
-            console.log(package + ' is not up to date\n' + res.installed + ' => ' + res.latestVersion);
-        }
-        console.log('\n');
+        console.log(package + ',' + res.installed + ',' + res.latestVersion + ',');
     });
     return;
 }
