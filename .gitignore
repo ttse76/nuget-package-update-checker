@@ -1,2 +1,3 @@
 /config/fileloc.json
 /node_modules
+*.packages.txt
