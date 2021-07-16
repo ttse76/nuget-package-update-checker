@@ -66,5 +66,7 @@ exports.isUpToDate = async (packageName, version) => {
     return {
         status: 200,
         upToDate: true,
+        latestVersion: latest.version,
+        installed: version
     };
 };
