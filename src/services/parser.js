@@ -12,6 +12,12 @@ const xmlParser = async (path) => {
     }
 };
 
+/**
+ * Scans .csproj file for package references installed version number
+ * 
+ * @param {*} path - Path to .csproj file
+ * @returns packages with their installed versions or message if error
+ */
 exports.getInstalledVersions = async (path) => {
     const data = await xmlParser(path);
 
