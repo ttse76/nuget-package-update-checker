@@ -3,6 +3,12 @@ const fetch = require('node-fetch');
 
 const BASE_URL = 'https://api.nuget.org/v3/registration5-gz-semver2/';
 
+/**
+ * Retreives latest version of the package from the NuGet API
+ * 
+ * @param {*} packageName - Name of package being searched
+ * @returns - latest version or message if error
+ */
 const getLatestVersion = async (packageName) => {
     const url = BASE_URL + packageName.toLowerCase() + '/index.json';
 
@@ -31,6 +37,13 @@ const getLatestVersion = async (packageName) => {
     }
 };
 
+/**
+ * Checkes if specified version is the latest version of the specified package
+ * 
+ * @param {*} packageName - Name of package that is being evaluated
+ * @param {*} version - Current installed version
+ * @returns package evaluation or message if error
+ */
 exports.isUpToDate = async (packageName, version) => {
     var latest = await getLatestVersion(packageName);
 
