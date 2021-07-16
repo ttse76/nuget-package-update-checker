@@ -1,6 +1,5 @@
 const fs = require('fs');
 const xml2js = require('xml2js');
-const parser = xml2js.Parser({attrkey: "ATTR"});
 const nuget = require('./services/nuget-fetcher');
 
 const fileloc = require('../config/fileloc.json');
@@ -66,10 +65,12 @@ const main = async () => {
         const version = packages[package];
         const res = await nuget.isUpToDate(package, version);
         if(res.status !== 200){
-            console.log(package + ',,,' + res.message);
+            var errStr = package + ',,,' + res.message;
+            fs.appendFile(label + '.packages.txt', errStr, err => {});
             return;
         }
-        console.log(package + ',' + res.installed + ',' + res.latestVersion + ',');
+        var outStr = package + ',' + res.installed + ',' + res.latestVersion + ',\n';
+        fs.appendFile(label + '.packages.txt', outStr, err => {});
     });
     return;
 }
