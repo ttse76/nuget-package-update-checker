@@ -2,18 +2,17 @@ const fs = require('fs');
 const parser = require('./services/parser');
 const nuget = require('./services/nuget-fetcher');
 
-const fileloc = require('../config/fileloc.json');
-const fileLocLabels = Object.keys(fileloc);
-
 const main = async () => {
-    const numFile = process.argv[2];
-
-    if(fileLocLabels.length <= numFile){
-        console.error('Number of files less than ' + numFile);
+    var fileloc = {};
+    var fileLocLabels = [];
+    try{
+        fileloc = require('../config/fileloc.json');
+        fileLocLabels = Object.keys(fileloc);
+    }catch(err){
+        console.error('Error: No fileloc.json file found');
         return;
     }
-    const label = fileLocLabels[numFile];
-    
+
     console.log('Evaluating packages for ' + label + '...');
     const path = fileloc[label];
     const data = await parser.getInstalledVersions(path);
