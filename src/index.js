@@ -1,5 +1,4 @@
 const fs = require('fs');
-const xml2js = require('xml2js');
 const parser = require('./services/parser');
 const nuget = require('./services/nuget-fetcher');
 
