@@ -30,11 +30,9 @@ const main = async () => {
         const res = await nuget.isUpToDate(package, version);
         if(res.status !== 200){
             console.log('Error in version check for ' + package + ': ' + res.message);
-            var errStr = package + ',,,' + res.message;
-            fs.appendFile(label + '.packages.txt', errStr, err => {});
             return;
         }
-        var outStr = package + ',' + res.installed + ',' + res.latestVersion + ',\n';
+        var outStr = package + ',' + res.installed + ',' + res.latestVersion + '\n';
         fs.appendFile(label + '.packages.txt', outStr, err => {});
     });
     return;
